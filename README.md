@@ -6,6 +6,8 @@
 # 📦 Packaging
 > Packaging for Qob CLI
 
+This repository records Qob CLI's status to each package manager.
+
 #### 🧪 Debian
 > N/A
 
