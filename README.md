@@ -6,6 +6,46 @@
 # 📦 Packaging
 > Packaging for Qob CLI
 
+#### 🧪 Debian
+> N/A
+
+WIP
+
+#### 🧪 Snap
+> N/A
+
+WIP
+
+#### 🧪 Nix
+> N/A
+
+WIP
+
+#### 🧪 Homebrew
+> N/A
+
+WIP
+
+#### 🧪 MacPorts
+> N/A
+
+WIP
+
+#### 🧪 Chocolatey
+> N/A
+
+WIP
+
+#### 🧪 Scoop
+> N/A
+
+WIP
+
+#### 🧪 Winget
+> N/A
+
+WIP
+
 ## ⚜️ License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
