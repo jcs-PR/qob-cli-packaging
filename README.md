@@ -1,4 +1,9 @@
-# packaging
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Windows](https://img.shields.io/badge/-Windows-lightblue?logo=windows&style=flat&logoColor=blue)](#)
+[![macOS](https://img.shields.io/badge/-macOS-lightgrey?logo=apple&style=flat&logoColor=white)](#)
+[![Linux](https://img.shields.io/badge/-Linux-fcc624?logo=linux&style=flat&logoColor=black)](#)
+<a href="#"><img align="right" src="https://raw.githubusercontent.com/cl-qob/cli/master/docs/static/logo.png" width="20%"></a>
+# 📦 Packaging
 > Packaging for Qob CLI
 
 ## ⚜️ License
