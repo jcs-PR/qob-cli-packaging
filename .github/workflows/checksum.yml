@@ -1,0 +1,246 @@
+name: checksum
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**.yml'
+      - '**.el'
+      - 'checksum/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  schedule:
+    - cron:  '0 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.expose-ver.outputs.VERSION }}
+    steps:
+    - uses: jcs090218/setup-emacs@master
+      with:
+        version: 29.4
+
+    - uses: emacs-eask/setup-eask@master
+      with:
+        version: 'snapshot'
+
+    - uses: actions/checkout@v4
+
+    - name: Expose Version
+      id: expose-ver
+      run: |
+        eask install-deps --dev
+        echo "VERSION=$(eask load scripts/latest-tag.el)" >> $GITHUB_OUTPUT
+    
+  get-ubuntu:
+    needs: [get-version]
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.get-version.outputs.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+        - linux-arm64
+        - linux-x64
+    steps:
+    - uses: jcs090218/setup-emacs@master
+      with:
+        version: 29.4
+
+    - uses: emacs-eask/setup-eask@master
+      with:
+        version: 'snapshot'
+
+    - uses: actions/checkout@v4
+
+    - uses: suisei-cn/actions-download-file@master
+      name: Download Binaries (Target)
+      with:
+        url: https://github.com/cl-qob/cli/releases/download/${{ env.VERSION }}/qob_${{ env.VERSION }}_${{ matrix.target }}.tar.gz
+
+    - name: Expose zip path (Target)
+      run: |
+        echo "QOB_ZIP=qob_${{ env.VERSION }}_${{ matrix.target }}.tar.gz" >> $GITHUB_ENV
+
+    - name: Expose binary path
+      run: |
+        echo "QOB_VER=${{ env.VERSION }}" >> $GITHUB_ENV
+
+    - name: Update checksum info
+      run: |
+        eask install-deps
+        eask run script update-checksum
+
+    - name: Remove zip file
+      run: |
+        rm -rf ${{ env.QOB_ZIP }}
+
+    - name: Set git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
+    - name: Commit
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update checksum ${{ env.QOB_ZIP }}/**"
+
+    - name: Push updated formula
+      continue-on-error: true
+      uses: jcs090218/github-push-action@master
+      with:
+        branch: master
+        rebase: true
+        retry: 7
+    
+  get-macos:
+    needs: [get-version]
+    # XXX: I attempted to use `ubuntu-latest`, but the openssl arguments and
+    # options there are more complicated.
+    #
+    # See https://github.com/openssl/openssl/issues/9349
+    runs-on: macos-latest
+    env:
+      VERSION: ${{ needs.get-version.outputs.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+        - macos-arm64
+        - macos-x64
+
+    steps:
+    - uses: jcs090218/setup-emacs@master
+      with:
+        version: 29.4
+
+    - uses: emacs-eask/setup-eask@master
+      with:
+        version: 'snapshot'
+
+    - uses: actions/checkout@v4
+
+    - uses: suisei-cn/actions-download-file@master
+      name: Download Binaries (Target)
+      with:
+        url: https://github.com/cl-qob/cli/releases/download/${{ env.VERSION }}/qob_${{ env.VERSION }}_${{ matrix.target }}.tar.gz
+
+    - name: Expose zip path (Target)
+      run: |
+        echo "QOB_ZIP=qob_${{ env.VERSION }}_${{ matrix.target }}.tar.gz" >> $GITHUB_ENV
+
+    - name: Expose binary path
+      run: |
+        echo "QOB_VER=${{ env.VERSION }}" >> $GITHUB_ENV
+
+    - name: Install Homebrew
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    - name: Update checksum info
+      run: |
+        brew install openssl
+        eask install-deps
+        eask run script update-checksum
+
+    - name: Remove zip file
+      run: |
+        rm -rf ${{ env.QOB_ZIP }}
+
+    - name: Set git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
+    - name: Commit
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update checksum ${{ env.QOB_ZIP }}/**"
+
+    - name: Push updated formula
+      continue-on-error: true
+      uses: jcs090218/github-push-action@master
+      with:
+        branch: master
+        rebase: true
+        retry: 7
+
+  get-windows:
+    needs: [get-version]
+    runs-on: windows-latest
+    env:
+      VERSION: ${{ needs.get-version.outputs.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+        - win-arm64
+        - win-x64
+    steps:
+    - uses: jcs090218/setup-emacs@master
+      with:
+        version: 29.4
+
+    - uses: emacs-eask/setup-eask@master
+      with:
+        version: 'snapshot'
+
+    - uses: actions/checkout@v4
+
+    - uses: suisei-cn/actions-download-file@master
+      name: Download Binaries (Target)
+      with:
+        url: https://github.com/cl-qob/cli/releases/download/${{ env.VERSION }}/qob_${{ env.VERSION }}_${{ matrix.target }}.zip
+
+    - name: Expose zip path (Target)
+      run: |
+        Add-Content -Path ${env:GITHUB_ENV} -Value "QOB_ZIP=qob_${{ env.VERSION }}_${{ matrix.target }}.zip"
+
+    - name: Expose binary path
+      run: |
+        Add-Content -Path ${env:GITHUB_ENV} -Value "QOB_VER=${{ env.VERSION }}"
+
+    - name: Update checksum info
+      run: |
+        eask install-deps
+        eask run script update-checksum
+
+    - name: Remove zip file
+      run: |
+        del ${{ env.QOB_ZIP }}
+
+    - name: Set git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
+    - name: Commit
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update checksum ${{ env.QOB_ZIP }}/**"
+
+    - name: Push updated formula
+      continue-on-error: true
+      uses: jcs090218/github-push-action@master
+      with:
+        branch: master
+        rebase: true
+        retry: 7
