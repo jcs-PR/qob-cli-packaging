@@ -21,6 +21,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  EMACS_VER: 29.4
+
 jobs:
   get-version:
     runs-on: ubuntu-latest
@@ -29,7 +32,7 @@ jobs:
     steps:
     - uses: jcs090218/setup-emacs@master
       with:
-        version: 29.4
+        version: ${{ env.EMACS_VER }}
 
     - uses: emacs-eask/setup-eask@master
       with:
@@ -57,7 +60,7 @@ jobs:
     steps:
     - uses: jcs090218/setup-emacs@master
       with:
-        version: 29.4
+        version: ${{ env.EMACS_VER }}
 
     - uses: emacs-eask/setup-eask@master
       with:
@@ -126,7 +129,7 @@ jobs:
     steps:
     - uses: jcs090218/setup-emacs@master
       with:
-        version: 29.4
+        version: ${{ env.EMACS_VER }}
 
     - uses: emacs-eask/setup-eask@master
       with:
@@ -195,7 +198,7 @@ jobs:
     steps:
     - uses: jcs090218/setup-emacs@master
       with:
-        version: 29.4
+        version: ${{ env.EMACS_VER }}
 
     - uses: emacs-eask/setup-eask@master
       with:
@@ -237,7 +240,7 @@ jobs:
         git add .
         git commit -m "Update checksum ${{ env.QOB_ZIP }}/**"
 
-    - name: Push updated formula
+    - name: Push latest checksum
       continue-on-error: true
       uses: jcs090218/github-push-action@master
       with:
