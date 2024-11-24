@@ -11,7 +11,7 @@
 This repository records Qob CLI's status to each package manager.
 
 #### 🧪 Debian
-> N/A
+> https://github.com/cl-qob/packaging/tree/master/debian
 
 WIP
 
