@@ -1,0 +1,27 @@
+name: Debian Install
+
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Qob CLI
+      run: |
+        sudo curl -SsL -o /etc/apt/trusted.gpg.d/qobsource.gpg https://raw.githubusercontent.com/cl-qob/packaging/master/debian/KEY.gpg
+        sudo curl -SsL -o /etc/apt/sources.list.d/qobsource.list https://raw.githubusercontent.com/cl-qob/packaging/master/debian/qobsource.list
+        sudo apt update --allow-insecure-repositories
+        sudo apt install qob-cli -y --allow-unauthenticated
+
+    - name: Print Qob CLI version
+      run: |
+        qob --version
