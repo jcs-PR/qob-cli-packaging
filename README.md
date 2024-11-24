@@ -13,7 +13,10 @@ This repository records Qob CLI's status to each package manager.
 #### 🧪 Debian
 > https://github.com/cl-qob/packaging/tree/master/debian
 
+[![Debian Update](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml)
 [![Debian Build](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml)
+[![Debian Release](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml)
+[![Debian Install](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml)
 
 #### 🧪 Snap
 > N/A
