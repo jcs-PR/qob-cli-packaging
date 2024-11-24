@@ -7,7 +7,7 @@
 > Packaging for Qob CLI
 
 [![checksum](https://github.com/cl-qob/packaging/actions/workflows/checksum.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/checksum.yml)
-
+c
 This repository records Qob CLI's status to each package manager.
 
 #### 🧪 Debian
