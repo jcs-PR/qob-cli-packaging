@@ -31,7 +31,8 @@ WIP
 #### 🧪 Homebrew
 > https://github.com/cl-qob/packaging/blob/master/Formula/qob-cli.rb
 
-WIP
+[![Brew Install](https://github.com/cl-qob/packaging/actions/workflows/brew_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/brew_install.yml)
+[![Brew Update](https://github.com/cl-qob/packaging/actions/workflows/brew_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/brew_update.yml)
 
 #### 🧪 MacPorts
 > N/A
