@@ -13,7 +13,7 @@ This repository records Qob CLI's status to each package manager.
 #### 🧪 Debian
 > https://github.com/cl-qob/packaging/tree/master/debian
 
-WIP
+[![Debian Build](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml)
 
 #### 🧪 Snap
 > N/A
