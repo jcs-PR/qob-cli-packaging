@@ -1,0 +1,95 @@
+name: Debian Build
+
+on:
+  workflow_run:
+    workflows: ["Debian Update"]
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.expose-ver.outputs.VERSION }}
+    steps:
+    - uses: jcs090218/setup-emacs@master
+      with:
+        version: 29.4
+
+    - uses: emacs-eask/setup-eask@master
+      with:
+        version: 'snapshot'
+
+    - uses: actions/checkout@v4
+
+    - name: Expose Version
+      id: expose-ver
+      run: |
+        eask install-deps --dev
+        echo "VERSION=$(eask load scripts/latest-tag.el)" >> $GITHUB_OUTPUT
+
+  build:
+    needs: [get-version]
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.get-version.outputs.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+        - arm64
+        - x64
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Expose Arch
+      if: matrix.arch == 'x64'
+      run: |
+        echo "ARCH=amd64" >> $GITHUB_ENV
+
+    - name: Expose Arch
+      if: matrix.arch == 'arm64'
+      run: |
+        echo "ARCH=arm64" >> $GITHUB_ENV
+
+    - name: Update deb package
+      working-directory: debian
+      run: |
+        curl -fsSL https://github.com/cl-qob/cli/releases/download/${{ env.VERSION }}/qob_${{ env.VERSION }}_linux-${{ matrix.arch }}.tar.gz -o temp.tar.gz
+        mkdir -p "$(pwd)/qob_${{ env.VERSION }}_${{ env.ARCH }}/DEBIAN"
+        mkdir -p "$(pwd)/qob_${{ env.VERSION }}_${{ env.ARCH }}/usr/local/bin"
+        cp control/${{ matrix.arch }} "$(pwd)/qob_${{ env.VERSION }}_${{ env.ARCH }}/DEBIAN/control"
+        tar -xvzf temp.tar.gz -C "$(pwd)/qob_${{ env.VERSION }}_${{ env.ARCH }}/usr/local/bin"
+        dpkg-deb --build qob_${{ env.VERSION }}_${{ env.ARCH }}
+
+    - name: Clean up
+      working-directory: debian
+      run: |
+        rm -rf temp.tar.gz
+        rm -rf qob_${{ env.VERSION }}_${{ env.ARCH }}
+
+    - name: Set git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
+    - name: Commit
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update Debian package"
+
+    - name: Push updated deb package
+      continue-on-error: true
+      uses: jcs090218/github-push-action@master
+      with:
+        branch: master
+        rebase: true
+        retry: 7
