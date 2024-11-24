@@ -29,7 +29,7 @@ WIP
 WIP
 
 #### 🧪 Homebrew
-> N/A
+> [N/A](https://github.com/cl-qob/packaging/blob/master/Formula/qob-cli.rb)
 
 WIP
 
