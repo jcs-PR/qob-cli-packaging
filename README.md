@@ -47,9 +47,10 @@ WIP
 WIP
 
 #### 🧪 Scoop
-> N/A
+> https://github.com/cl-qob/packaging/blob/master/bucket/qob-cli.json
 
-WIP
+[![Scoop Install](https://github.com/cl-qob/packaging/actions/workflows/scoop_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/scoop_install.yml)
+[![Scoop Update](https://github.com/cl-qob/packaging/actions/workflows/scoop_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/scoop_update.yml)
 
 #### 🧪 Winget
 > N/A
