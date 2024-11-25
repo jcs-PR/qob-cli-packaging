@@ -43,6 +43,6 @@ jobs:
     - name: Install Qob CLI
       run: |
         brew tap cl-qob/cli https://github.com/cl-qob/packaging
-        brew install qob-cli
+        brew install --cask qob-cli
 
     - run: qob --version
