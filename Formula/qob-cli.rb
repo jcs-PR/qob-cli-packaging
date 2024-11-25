@@ -8,6 +8,7 @@ class QobCli < Formula
   sha256 "9826a4d7f603c0c01692e97950282a2e4e7d12f3d1ba2067ad971cceff4f9aed"
 
   def install
-    bin.install_symlink Dir["#{libexec}/*"]
+    system "tar", "-xvf", cached_download
+    bin.install_symlink Dir["*"]
   end
 end
