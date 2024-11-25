@@ -9,6 +9,6 @@ class QobCli < Formula
 
   def install
     #system "tar", "-xvf", cached_download
-    bin.install_symlink Dir["*"]
+    bin.install "qob"
   end
 end
