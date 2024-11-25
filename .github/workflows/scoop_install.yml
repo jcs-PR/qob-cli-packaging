@@ -1,0 +1,34 @@
+
+name: Scoop Install
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**.yml'
+      - 'bucket/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Install Scoop
+      uses: MinoruSekine/setup-scoop@main
+
+    - name: Install Qob CLI
+      run: |
+        scoop bucket add cl-qob/cli https://github.com/cl-qob/packaging
+        scoop install qob-cli
+
+    - run: qob --version
