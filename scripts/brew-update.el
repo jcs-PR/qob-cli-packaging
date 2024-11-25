@@ -7,7 +7,7 @@
 (let* ((latest (get-latest-tag))
        (version)
        (beg) (end)
-       (data (checksum-data 'npm latest)))
+       (data (checksum-data "macos-x64" latest)))
   (with-find-file "Formula/qob-cli.rb"
     (goto-char (point-min))
     (when (search-forward "version " nil t)
