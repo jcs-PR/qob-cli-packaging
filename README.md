@@ -34,6 +34,8 @@ WIP
 [![Brew Install](https://github.com/cl-qob/packaging/actions/workflows/brew_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/brew_install.yml)
 [![Brew Update](https://github.com/cl-qob/packaging/actions/workflows/brew_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/brew_update.yml)
 
+- https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/has.rb - Use it as the reference!
+
 #### 🧪 MacPorts
 > N/A
 
