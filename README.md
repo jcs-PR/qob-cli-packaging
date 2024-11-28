@@ -42,7 +42,10 @@ WIP
 WIP
 
 #### 🧪 Chocolatey
-> N/A
+> https://community.chocolatey.org/packages/qob-cli
+
+![Chocolatey Version (including pre-releases)](https://img.shields.io/chocolatey/v/qob-cli?logo=chocolatey)
+![Chocolatey](https://img.shields.io/chocolatey/dt/qob-cli)
 
 WIP
 
