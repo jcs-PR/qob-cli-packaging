@@ -47,7 +47,7 @@ WIP
 ![Chocolatey Version (including pre-releases)](https://img.shields.io/chocolatey/v/qob-cli?logo=chocolatey)
 ![Chocolatey](https://img.shields.io/chocolatey/dt/qob-cli)
 
-WIP
+[![Choco Update](https://github.com/cl-qob/packaging/actions/workflows/choco_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/choco_update.yml)
 
 #### 🧪 Scoop
 > https://github.com/cl-qob/packaging/blob/master/bucket/qob-cli.json
