@@ -10,6 +10,8 @@
 
 This repository records Qob CLI's status to each package manager.
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/qob-cli.svg)](https://repology.org/project/qob-cli/versions)
+
 #### 🧪 Debian
 > https://github.com/cl-qob/packaging/tree/master/debian
 
