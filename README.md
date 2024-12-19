@@ -12,20 +12,12 @@ This repository records Qob CLI's status to each package manager.
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/qob-cli.svg)](https://repology.org/project/qob-cli/versions)
 
-#### 🧪 Debian
-> https://github.com/cl-qob/packaging/tree/master/debian
-
-[![Debian Update](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml)
-[![Debian Build](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml)
-[![Debian Release](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml)
-[![Debian Install](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml)
-
-#### 🧪 Snap
+#### 🧪 Nix
 > N/A
 
 WIP
 
-#### 🧪 Nix
+#### 🧪 Guix
 > N/A
 
 WIP
@@ -39,6 +31,19 @@ WIP
 - https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/has.rb - Use it as the reference!
 
 #### 🧪 MacPorts
+> N/A
+
+WIP
+
+#### 🧪 Debian
+> https://github.com/cl-qob/packaging/tree/master/debian
+
+[![Debian Update](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml)
+[![Debian Build](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml)
+[![Debian Release](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml)
+[![Debian Install](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml)
+
+#### 🧪 Snap
 > N/A
 
 WIP
