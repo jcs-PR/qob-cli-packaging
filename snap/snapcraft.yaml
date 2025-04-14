@@ -1,0 +1,21 @@
+name: qob-cli
+version: 0.1.0
+summary: CLI for building, running, testing, and managing your Common Lisp dependencies
+description: |
+  We aim to make Qob an all-in-one tool so users no longer need to install
+  tools like Roswell and Qlot, which only serve specific goals.
+license: MIT
+
+grade: stable
+base: core20
+confinement: strict
+
+apps:
+  qob-cli:
+    command: bin/qob
+
+parts:
+  qob-cli:
+    plugin: dump
+    source: https://github.com/cl-qob/cli/releases/download/0.1.0/qob_0.1.0_linux-x64.tar-gz
+    source-type: tar

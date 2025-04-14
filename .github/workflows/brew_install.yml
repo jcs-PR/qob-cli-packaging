@@ -1,0 +1,48 @@
+name: Brew Install
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**.yml'
+      - 'Formula/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        #- ubuntu-latest   # TODO: Add this!
+        - macos-latest
+
+    steps:
+    - name: Install Homebrew
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    - name: Setup Path
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bashrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        sudo apt-get install build-essential
+
+    - name: Install Qob CLI
+      run: |
+        brew tap cl-qob/cli https://github.com/cl-qob/packaging
+        brew install qob-cli
+
+    - run: qob --version

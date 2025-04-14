@@ -1,3 +1,6 @@
 /.eask
 /.qob
 /dist
+
+# OS generated
+.DS_Store

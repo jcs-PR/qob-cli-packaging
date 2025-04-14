@@ -3,6 +3,7 @@
 [![macOS](https://img.shields.io/badge/-macOS-lightgrey?logo=apple&style=flat&logoColor=white)](#)
 [![Linux](https://img.shields.io/badge/-Linux-fcc624?logo=linux&style=flat&logoColor=black)](#)
 <a href="#"><img align="right" src="https://raw.githubusercontent.com/cl-qob/cli/master/docs/static/logo.png" width="20%"></a>
+
 # 📦 Packaging
 > Packaging for Qob CLI
 
@@ -10,40 +11,57 @@
 
 This repository records Qob CLI's status to each package manager.
 
-#### 🧪 Debian
-> N/A
-
-WIP
-
-#### 🧪 Snap
-> N/A
-
-WIP
+[![Packaging status](https://repology.org/badge/vertical-allrepos/qob-cli.svg)](https://repology.org/project/qob-cli/versions)
 
 #### 🧪 Nix
 > N/A
 
 WIP
 
-#### 🧪 Homebrew
+#### 🧪 Guix
 > N/A
 
 WIP
+
+#### 🧪 Homebrew
+> https://github.com/cl-qob/packaging/blob/master/Formula/qob-cli.rb
+
+[![Brew Install](https://github.com/cl-qob/packaging/actions/workflows/brew_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/brew_install.yml)
+[![Brew Update](https://github.com/cl-qob/packaging/actions/workflows/brew_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/brew_update.yml)
+
+- https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/has.rb - Use it as the reference!
 
 #### 🧪 MacPorts
 > N/A
 
 WIP
 
-#### 🧪 Chocolatey
+#### 🧪 Debian
+> https://github.com/cl-qob/packaging/tree/master/debian
+
+[![Debian Update](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_update.yml)
+[![Debian Build](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_build.yml)
+[![Debian Release](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_release.yml)
+[![Debian Install](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/debian_install.yml)
+
+#### 🧪 Snap
 > N/A
 
 WIP
+
+#### 🧪 Chocolatey
+> https://community.chocolatey.org/packages/qob-cli
+
+![Chocolatey Version (including pre-releases)](https://img.shields.io/chocolatey/v/qob-cli?logo=chocolatey)
+![Chocolatey](https://img.shields.io/chocolatey/dt/qob-cli)
+
+[![Choco Update](https://github.com/cl-qob/packaging/actions/workflows/choco_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/choco_update.yml)
 
 #### 🧪 Scoop
-> N/A
+> https://github.com/cl-qob/packaging/blob/master/bucket/qob-cli.json
 
-WIP
+[![Scoop Install](https://github.com/cl-qob/packaging/actions/workflows/scoop_install.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/scoop_install.yml)
+[![Scoop Update](https://github.com/cl-qob/packaging/actions/workflows/scoop_update.yml/badge.svg)](https://github.com/cl-qob/packaging/actions/workflows/scoop_update.yml)
 
 #### 🧪 Winget
 > N/A
